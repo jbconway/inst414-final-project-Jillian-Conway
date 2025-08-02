@@ -1,0 +1,4 @@
+cornel_bird_data/ebd_ds/** -text
+cornel_bird_data/ebd_ds/*.txt filter=lfs diff=lfs merge=lfs -text
+data/extracted/*.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/*.csv filter=lfs diff=lfs merge=lfs -text
