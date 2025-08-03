@@ -95,19 +95,17 @@ python main.py
 
 This command will execute the entire workflow, including:
 
-Extracting, transforming, and loading the raw bird data
+ - Extracting, transforming, and loading the raw bird data
 
-Performing descriptive analysis and generating summary statistics
+ - Performing descriptive analysis and generating summary statistics
 
-Creating visualizations such as abundance histograms and bird location maps
+ - Creating visualizations such as abundance histograms and bird location maps
 
-All outputs (processed data, analysis results, and visualizations) will be saved in the appropriate data/ subfolders.
+ - All outputs (processed data, analysis results, and visualizations) will be saved in the appropriate data/ subfolders.
 
-pgsql
-Copy
-Edit
 
 ## Code Package Structure
+```bash
 inst414-final-project-Jillian-Conway/
 │
 ├── data/
@@ -139,6 +137,7 @@ inst414-final-project-Jillian-Conway/
 ├── .gitignore
 ├── .gitattributes
 └── README.md
+```
 
 
 ## Techniques Employed
