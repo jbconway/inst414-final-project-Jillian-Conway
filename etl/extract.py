@@ -14,13 +14,9 @@ def extract_data(file_path: str, output_filename: str):
     elif file_path.endswith('.csv'):
         sep = ','
     else:
-        # fallback or raise error if unknown
         raise ValueError("Unsupported file type. Only .csv and .txt files are supported.")
     
     print(f"Reading: {file_path} with sep='{sep}'")
-    df = pd.read_csv(file_path, low_memory=False, sep=sep)
-
-    output_path = os.path.join(output_filename)
-    df.to_csv(output_path, index=False)
-    print(f"Extracted and saved to {output_path}")
+    df = pd.read_csv(file_path, low_memory=False, sep=sep) # reads the file into a DataFrame
+    df.to_csv(output_filename, index=False) # writes the DataFrame to a CSV file
     return df
