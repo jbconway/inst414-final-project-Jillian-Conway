@@ -4,6 +4,8 @@ import etl.load as load
 import analysis.evaluate as ananalysis
 import vis.visualizations as vis
 import pandas as pd
+import analysis.model as model
+import analysis.evaluate as evaluate
 
 """
 Main script to run the ETL process, analyze bird data, and visualize results.
@@ -63,9 +65,12 @@ def main():
         print(f"Saving merged data for {species} to {merge_df_path}")
         load.save_processed_data(merged_df, merge_df_path)
 
-        # Analyze the merged data
-        print(f"Analyzing data for {species}")
-        ananalysis.summarize_bird_data(merged_df, species_name=species)
+        # Train model and evaluate
+        print(f"Training model for {species}")
+        trained_model, y_test, y_pred = model.train_model(merged_df)
+        print(f"Evaluating model for {species}")
+        evaluate.evaluate_model(y_test, y_pred, species_name=species)
+
 
         # Plot locations on Maryland map
         print(f"Plotting bird locations for {species}")

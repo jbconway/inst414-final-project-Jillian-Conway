@@ -130,7 +130,7 @@ inst414-final-project-Jillian-Conway/
 │
 ├── analysis/                    # Analysis and modeling scripts
 │   ├── evaluate.py             # Descriptive analytics
-│   └── model.py                # Modeling code (not yet applicable)
+│   └── model.py                # Modeling code 
 │
 ├── main.py                     # Project entry point
 ├── requirements.txt
