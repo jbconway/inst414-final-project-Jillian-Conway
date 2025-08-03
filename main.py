@@ -75,6 +75,8 @@ def main():
         # Plot locations on Maryland map
         print(f"Plotting bird locations for {species}")
         vis.plot_bird_locations(merged_df,species)
+        print(f"Plotting prediction distribution for {species}")
+        vis.plot_regression_results(y_test, y_pred, species)
 
 if __name__ == "__main__":
     main()  

@@ -155,6 +155,26 @@ inst414-final-project-Jillian-Conway/
 
 - Pipeline-based structure: ETL → Modeling → Evaluation → Visualization
 
+## Expected Outputs
+
+- Processed Data Files
+    - Cleaned, merged, and transformed datasets stored in data/processed/ ready for analysis.
+
+- Model Artifacts and Evaluation
+    - Trained regression models and evaluation metrics (MSE, MAE, R²) saved in data/analyzed/, including CSV summaries of model performance.
+
+- Visualizations
+
+    - Spatial maps of bird sightings by species in data/outputs/
+
+    - Regression plots showing predicted vs. actual bird abundance
+
+    - Distribution and trend charts (e.g., histograms, bar charts) illustrating population changes
+
+- Logs and Reports
+    - Console output showing progress and key results during pipeline runs.
+
+
 ## Additional Notes and Contact
 Notes:
 
