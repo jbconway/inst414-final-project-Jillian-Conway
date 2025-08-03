@@ -6,7 +6,7 @@ This project analyzes bird population data in Maryland from 2010 to 2023 to info
 
 ### Business Problem
 
-Current conservation resource allocation can be inefficient due to a lack of actionable population and distribution data. This project uses eBird datasets to understand abundance trends and spatial overlap among three species of interest in Maryland.
+Current conservation resource allocation can be inefficient due to a lack of actionable population and distribution data. This project uses eBird datasets to develop a **predictive model** that estimates whether a specific region contains a significant portion of a bird species’ population, based on environmental and temporal variables. These predictions help target areas that may warrant conservation attention.
 
 ### Data Sets Used
 
@@ -95,13 +95,13 @@ python main.py
 
 This command will execute the entire workflow, including:
 
- - Extracting, transforming, and loading the raw bird data
+- Extracting, transforming, and loading the raw bird data
 
- - Performing descriptive analysis and generating summary statistics
+- Training a logistic regression model to predict significant population presence in a region
 
- - Creating visualizations such as abundance histograms and bird location maps
+- Evaluating the model using a confusion matrix and classification report
 
- - All outputs (processed data, analysis results, and visualizations) will be saved in the appropriate data/ subfolders.
+- Saving visualizations and evaluation metrics to the data/analyzed/ directory 
 
 
 ## Code Package Structure
@@ -109,45 +109,51 @@ This command will execute the entire workflow, including:
 inst414-final-project-Jillian-Conway/
 │
 ├── data/
-│   ├── analyzed/                # Descriptive output files (e.g., plots)
-│   ├── extracted/               # Cleaned data from EBD
-│   ├── processed/               # Joined and transformed final data
-│   ├── outputs/                 # Final visualizations
-│   ├── shapefiles/              # Shapefile for Maryland boundaries
-│   └── reference-tables/        # Additional reference tables used in analysis
+│   ├── analyzed/               # Model evaluation outputs (e.g., confusion matrix)
+│   ├── extracted/              # Cleaned data from EBD
+│   ├── processed/              # Joined and transformed final data
+│   ├── outputs/                # Final visualizations (maps, plots)
+│   ├── shapefiles/             # Shapefile for Maryland boundaries
+│   └── reference-tables/       # Data dictionaries and lookup tables
 │
-├── cornel_bird_data/            # Raw data from Cornell (EBD + Status & Trends)
+├── cornel_bird_data/           # Raw data from Cornell (EBD + Status & Trends)
 │   ├── ebd_ds/
 │   └── trends_and_status_ds/
 │
 ├── etl/
-│   ├── extract.py
-│   ├── transform.py
-│   └── load.py
+│   ├── extract.py              # Read and subset raw datasets
+│   ├── transform.py            # Clean and merge datasets
+│   └── load.py                 # Save processed data
 │
 ├── vis/
-│   └── visualizations.py        # Mapping and abundance plots
+│   └── visualizations.py       # Geospatial maps of sightings
 │
-├── analysis/                    # Analysis and modeling scripts
-│   ├── evaluate.py             # Descriptive analytics
-│   └── model.py                # Modeling code 
+├── analysis/
+│   ├── model.py                # Predictive model (logistic regression)
+│   └── evaluate.py             # Evaluation metrics and output saving
 │
 ├── main.py                     # Project entry point
 ├── requirements.txt
 ├── .gitignore
 ├── .gitattributes
 └── README.md
+
 ```
 
 
 ## Techniques Employed
-- Descriptive statistics (counts, means, distributions)
 
-- Geospatial visualization (using GeoPandas and matplotlib)
+- Predictive analytics using logistic regression
 
-- Data transformation and cleaning using pandas
+- Feature engineering based on seasonal and abundance trends
 
-- Reproducible pipeline-based structure (ETL → Evaluation → Visualization)
+- Model evaluation using confusion matrix and classification report
+
+- Data cleaning and transformation using pandas
+
+- Mapping and geospatial visualization using GeoPandas and matplotlib
+
+- Pipeline-based structure: ETL → Modeling → Evaluation → Visualization
 
 ## Additional Notes and Contact
 Notes:
