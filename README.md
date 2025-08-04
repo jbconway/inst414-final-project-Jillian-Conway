@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project analyzes bird population data in Maryland from 2010 to 2023 to inform conservation resource allocation. The goal is to identify where bird species are most abundant and how their habitats overlap to help optimize conservation efforts.
+This project uses bird population data from 2010 to 2023 in Maryland to support better conservation planning through predictive analytics. By modeling abundance trends for three bird species—osprey, American woodcock, and northern cardinal—I aimed to forecast where each species is most likely to be found in high numbers. These predictions help conservation organizations prioritize areas for habitat protection and resource allocation. The analysis combines observational data with modeled estimates to identify meaningful patterns in abundance and reveal where efforts may have the greatest impact now and in the future.
 
 ### Business Problem
 
@@ -20,7 +20,7 @@ Current conservation resource allocation can be inefficient due to a lack of act
    - Includes spatial and seasonal population summaries like `abundance_mean`, `total_pop_percent`, and `season`  
    - Downloaded for the three selected bird species across Maryland
 
-These datasets are placed in a folder named after the source (`cornell_bird_data`) and are included in the project package. Note that these were downloaded once after submitting access requests and are tracked via Git Large File Storage (Git LFS). Both datasets are used to explore where species are abundant and how their habitats overlap spatially. Data were subset to Maryland from 2010–2023 and include Northern Cardinal, American Woodcock, and Osprey.
+These datasets are placed in a folder named after the source (`cornell_bird_data`) and are included in the project package. Note that these were downloaded once after submitting access requests and are tracked via Git Large File Storage (Git LFS). Data were subset to Maryland from 2010–2023 and include Northern Cardinal, American Woodcock, and Osprey.
 
 ---
 
