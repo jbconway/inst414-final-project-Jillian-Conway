@@ -20,7 +20,8 @@ Current conservation resource allocation can be inefficient due to a lack of act
    - Includes spatial and seasonal population summaries like `abundance_mean`, `total_pop_percent`, and `season`  
    - Downloaded for the three selected bird species across Maryland
 
-These datasets are placed in a folder named after the source (`cornell_bird_data`) and are included in the project package. Note that these were downloaded once after submitting access requests and are tracked via Git Large File Storage (Git LFS). Data were subset to Maryland from 2010–2023 and include Northern Cardinal, American Woodcock, and Osprey.
+
+These datasets are placed in a folder named after the source (`cornell_bird_data`) and are included in the project package. Here is the link to the website: https://science.ebird.org/en/use-ebird-data/download-ebird-data-products. Note that these were a one-time download after submitting access requests and are tracked via Git Large File Storage (Git LFS). Data were subset to Maryland from 2010–2023 and include Northern Cardinal, American Woodcock, and Osprey.
 
 ---
 
@@ -67,7 +68,7 @@ git lfs pull
 ```
 This ensures that large data files referenced in the repo are correctly downloaded.
 
-### 6. Git Config
+### 6. Git Config (this step only applies if you would be commiting new datasets to this project)
 .gitignore excludes files and folders that should not be tracked by Git, such as the virtual environment folder:
 
 ```bash
@@ -98,8 +99,6 @@ This command will execute the entire workflow, including:
 - Extracting, transforming, and loading the raw bird data
 
 - Training a logistic regression model to predict significant population presence in a region
-
-- Evaluating the model using a confusion matrix and classification report
 
 - Saving visualizations and evaluation metrics to the data/analyzed/ directory 
 
@@ -147,7 +146,7 @@ inst414-final-project-Jillian-Conway/
 
 - Feature engineering based on seasonal and abundance trends
 
-- Model evaluation using confusion matrix and classification report
+- Model evaluation based on calculated accuracy values
 
 - Data cleaning and transformation using pandas
 
@@ -169,9 +168,7 @@ inst414-final-project-Jillian-Conway/
 
     - Regression plots showing predicted vs. actual bird abundance
 
-    - Distribution and trend charts (e.g., histograms, bar charts) illustrating population changes
-
-- Logs and Reports
+- Logs and Reports (coming soon)
     - Console output showing progress and key results during pipeline runs.
 
 
