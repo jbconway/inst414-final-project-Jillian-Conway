@@ -1,0 +1,108 @@
+2025-08-09 16:25:46,082 - INFO - Pipeline started.
+2025-08-09 16:25:46,084 - INFO - Processing species: cardinal
+2025-08-09 16:25:46,084 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_norcar_201001_202401_smp_relJun-2025.txt with sep='	'
+2025-08-09 16:26:13,902 - INFO - Saved extracted data to data/extracted/cardinal_ebd_extracted.csv
+2025-08-09 16:26:14,036 - INFO - Extracted EBD data for cardinal and saved to data/extracted/cardinal_ebd_extracted.csv
+2025-08-09 16:26:14,036 - INFO - Reading: cornel_bird_data/trends_and_status_ds/norcar_regional_2023.csv with sep=','
+2025-08-09 16:26:14,036 - INFO - Saved extracted data to data/extracted/cardinal_status_extracted.csv
+2025-08-09 16:26:14,036 - INFO - Extracted Status data for cardinal and saved to data/extracted/cardinal_status_extracted.csv
+2025-08-09 16:26:43,673 - INFO - Cleaned EBD data for cardinal
+2025-08-09 16:26:43,724 - INFO - Cleaned Status data for cardinal
+2025-08-09 16:26:43,724 - INFO - Merging datasets for cardinal
+2025-08-09 16:26:44,585 - INFO - Applied single year_round row to all observations (no species key found).
+2025-08-09 16:26:44,586 - INFO - Running EDA for cardinal
+2025-08-09 16:26:44,586 - INFO - Running EDA...
+2025-08-09 16:26:44,586 - INFO - Data shape: (896890, 10)
+2025-08-09 16:26:44,586 - INFO - Columns: ['scientific_name', 'common_name', 'observation_count', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season']
+2025-08-09 16:26:44,979 - INFO - Top 5 seasons:
+season
+year_round    896890
+Name: count, dtype: int64
+2025-08-09 16:26:46,745 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_northern_cardinal.png
+2025-08-09 16:26:46,745 - INFO - Saving merged data for cardinal to data/processed/cardinal_merged_data.csv
+2025-08-09 16:26:59,769 - INFO - Saved processed data to: data/processed/cardinal_merged_data.csv
+2025-08-09 16:26:59,769 - INFO - Training model for cardinal
+2025-08-09 16:27:00,026 - INFO - Target variable sample values for training: [3.9600723807670937, 3.9600723807670937, 3.9600723807670937, 3.9600723807670937, 3.9600723807670937]
+2025-08-09 16:27:00,352 - INFO - Linear regression model trained successfully.
+2025-08-09 16:27:00,392 - INFO - Evaluating model for cardinal
+2025-08-09 16:27:00,404 - INFO - Evaluation for cardinal: MSE=0.000, MAE=0.000, R²=0.000
+2025-08-09 16:27:00,408 - INFO - Saved evaluation results to data/analyzed/evaluation_results.csv
+2025-08-09 16:27:00,408 - INFO - Plotting bird locations for cardinal
+2025-08-09 16:27:00,670 - INFO - Data cleaned for plotting bird locations for cardinal.
+2025-08-09 16:27:34,247 - INFO - Saved bird locations map for cardinal to data/outputs/map_cardinal.png
+2025-08-09 16:27:34,261 - INFO - Plotting regression results for cardinal
+2025-08-09 16:27:34,983 - INFO - Saved regression plot for cardinal to data/outputs/regression_plot_cardinal.png
+2025-08-09 16:27:34,983 - INFO - Processing species: osprey
+2025-08-09 16:27:34,983 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_osprey_201001_202401_smp_relJun-2025.txt with sep='	'
+2025-08-09 16:27:40,151 - INFO - Saved extracted data to data/extracted/osprey_ebd_extracted.csv
+2025-08-09 16:27:40,176 - INFO - Extracted EBD data for osprey and saved to data/extracted/osprey_ebd_extracted.csv
+2025-08-09 16:27:40,176 - INFO - Reading: cornel_bird_data/trends_and_status_ds/osprey_regional_2023.csv with sep=','
+2025-08-09 16:27:40,290 - INFO - Saved extracted data to data/extracted/osprey_status_extracted.csv
+2025-08-09 16:27:40,291 - INFO - Extracted Status data for osprey and saved to data/extracted/osprey_status_extracted.csv
+2025-08-09 16:27:44,612 - INFO - Cleaned EBD data for osprey
+2025-08-09 16:27:44,673 - INFO - Cleaned Status data for osprey
+2025-08-09 16:27:44,673 - INFO - Merging datasets for osprey
+2025-08-09 16:28:54,367 - INFO - Applied seasonal matching to EBD data
+2025-08-09 16:28:54,433 - INFO - Running EDA for osprey
+2025-08-09 16:28:54,433 - INFO - Running EDA...
+2025-08-09 16:28:54,433 - INFO - Data shape: (190285, 10)
+2025-08-09 16:28:54,433 - INFO - Columns: ['scientific_name', 'common_name', 'observation_count', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season']
+2025-08-09 16:28:54,507 - INFO - Top 5 seasons:
+season
+prebreeding_migration     85715
+postbreeding_migration    47573
+breeding                  45770
+n/a                       11227
+Name: count, dtype: int64
+2025-08-09 16:28:56,682 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_osprey.png
+2025-08-09 16:28:56,682 - INFO - Saving merged data for osprey to data/processed/osprey_merged_data.csv
+2025-08-09 16:28:57,576 - INFO - Saved processed data to: data/processed/osprey_merged_data.csv
+2025-08-09 16:28:57,576 - INFO - Training model for osprey
+2025-08-09 16:28:57,592 - INFO - Target variable sample values for training: [0.3462748495823484, 0.3462748495823484, 0.3462748495823484, 0.3462748495823484, 0.3462748495823484]
+2025-08-09 16:28:57,624 - INFO - Linear regression model trained successfully.
+2025-08-09 16:28:57,624 - INFO - Evaluating model for osprey
+2025-08-09 16:28:57,624 - INFO - Evaluation for osprey: MSE=0.000, MAE=0.016, R²=0.988
+2025-08-09 16:28:57,624 - INFO - Saved evaluation results to data/analyzed/evaluation_results.csv
+2025-08-09 16:28:57,624 - INFO - Plotting bird locations for osprey
+2025-08-09 16:28:57,640 - INFO - Data cleaned for plotting bird locations for osprey.
+2025-08-09 16:29:01,873 - INFO - Saved bird locations map for osprey to data/outputs/map_osprey.png
+2025-08-09 16:29:01,873 - INFO - Plotting regression results for osprey
+2025-08-09 16:29:02,220 - INFO - Saved regression plot for osprey to data/outputs/regression_plot_osprey.png
+2025-08-09 16:29:02,220 - INFO - Processing species: american_woodcock
+2025-08-09 16:29:02,220 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_amewoo_201001_202401_smp_relJun-2025.txt with sep='	'
+2025-08-09 16:29:02,450 - INFO - Saved extracted data to data/extracted/american_woodcock_ebd_extracted.csv
+2025-08-09 16:29:02,456 - INFO - Extracted EBD data for american_woodcock and saved to data/extracted/american_woodcock_ebd_extracted.csv
+2025-08-09 16:29:02,456 - INFO - Reading: cornel_bird_data/trends_and_status_ds/amewoo_regional_2023.csv with sep=','
+2025-08-09 16:29:02,465 - INFO - Saved extracted data to data/extracted/american_woodcock_status_extracted.csv
+2025-08-09 16:29:02,465 - INFO - Extracted Status data for american_woodcock and saved to data/extracted/american_woodcock_status_extracted.csv
+2025-08-09 16:29:02,635 - INFO - Cleaned EBD data for american_woodcock
+2025-08-09 16:29:02,667 - INFO - Cleaned Status data for american_woodcock
+2025-08-09 16:29:02,667 - INFO - Merging datasets for american_woodcock
+2025-08-09 16:29:04,750 - INFO - Applied seasonal matching to EBD data
+2025-08-09 16:29:04,753 - INFO - Running EDA for american_woodcock
+2025-08-09 16:29:04,753 - INFO - Running EDA...
+2025-08-09 16:29:04,753 - INFO - Data shape: (7317, 9)
+2025-08-09 16:29:04,753 - INFO - Columns: ['scientific_name', 'common_name', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season']
+2025-08-09 16:29:04,757 - INFO - Top 5 seasons:
+season
+prebreeding_migration     4811
+postbreeding_migration    1034
+breeding                   770
+nonbreeding                512
+n/a                        190
+Name: count, dtype: int64
+2025-08-09 16:29:04,989 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_american_woodcock.png
+2025-08-09 16:29:04,989 - INFO - Saving merged data for american_woodcock to data/processed/american_woodcock_merged_data.csv
+2025-08-09 16:29:05,036 - INFO - Saved processed data to: data/processed/american_woodcock_merged_data.csv
+2025-08-09 16:29:05,036 - INFO - Training model for american_woodcock
+2025-08-09 16:29:05,038 - INFO - Target variable sample values for training: [0.015210741173681, 0.015210741173681, 0.0038005722810833, 0.3312369083950744, 0.3312369083950744]
+2025-08-09 16:29:05,040 - INFO - Linear regression model trained successfully.
+2025-08-09 16:29:05,040 - INFO - Evaluating model for american_woodcock
+2025-08-09 16:29:05,040 - INFO - Evaluation for american_woodcock: MSE=0.003, MAE=0.037, R²=0.887
+2025-08-09 16:29:05,040 - INFO - Saved evaluation results to data/analyzed/evaluation_results.csv
+2025-08-09 16:29:05,040 - INFO - Plotting bird locations for american_woodcock
+2025-08-09 16:29:05,040 - INFO - Data cleaned for plotting bird locations for american_woodcock.
+2025-08-09 16:29:05,306 - INFO - Saved bird locations map for american_woodcock to data/outputs/map_american_woodcock.png
+2025-08-09 16:29:05,306 - INFO - Plotting regression results for american_woodcock
+2025-08-09 16:29:05,456 - INFO - Saved regression plot for american_woodcock to data/outputs/regression_plot_american_woodcock.png
+2025-08-09 16:29:05,456 - INFO - Pipeline finished.

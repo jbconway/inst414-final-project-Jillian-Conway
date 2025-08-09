@@ -1,9 +1,10 @@
-## may add more types of visualizations later, like histograms or bar charts
+import logging
+import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import geopandas as gpd
-import pandas as pd
-import os
+
+logger = logging.getLogger(__name__)
 
 def plot_bird_locations(df, species_name):
     """
@@ -14,52 +15,60 @@ def plot_bird_locations(df, species_name):
         df (DataFrame): Data containing bird sightings and location info.
         species_name (str): Common name of the bird species (used in the title and filename).
     """
-    
-    # Drop rows where any of the required spatial or abundance columns are missing
-    df = df.dropna(subset=["latitude", "longitude", "abundance_mean", "total_pop_percent"])
-    
-    # Load US state shapefile and filter for just Maryland
-    states = gpd.read_file("data/shapefiles/cb_2022_us_state_20m.shp")
-    maryland = states[states['NAME'] == 'Maryland']
-    
-    # Convert latitude and longitude into geometric points
-    gdf = gpd.GeoDataFrame(
-        df, 
-        geometry=gpd.points_from_xy(df.longitude, df.latitude), 
-        crs="EPSG:4326"  # Set coordinate reference system to standard lat/lon
-    )
+    try:
+        # Drop rows where any of the required spatial or abundance columns are missing
+        df = df.dropna(subset=["latitude", "longitude", "abundance_mean", "total_pop_percent"])
+        logger.info(f"Data cleaned for plotting bird locations for {species_name}.")
 
-    # Create a plot with Maryland as the background
-    fig, ax = plt.subplots(figsize=(8, 10))
-    maryland.plot(ax=ax, color='lightgray')  # Draw Maryland state
-    gdf.plot(ax=ax, markersize=10, color='red', alpha=0.6)  # Plot bird sightings
-    
-    # Add title and axis labels
-    plt.title(f"Bird Sightings in Maryland: {species_name}", fontsize=14)
-    plt.xlabel("Longitude", fontsize=12)
-    plt.ylabel("Latitude", fontsize=12)
+        # Load US state shapefile and filter for just Maryland
+        states = gpd.read_file("data/shapefiles/cb_2022_us_state_20m.shp")
+        maryland = states[states['NAME'] == 'Maryland']
 
-    # Save plot to outputs directory
-    output_path = f"data/outputs/map_{species_name.lower().replace(' ', '_')}.png"
-    plt.savefig(output_path)
-    plt.close()
+        # Convert latitude and longitude into geometric points
+        gdf = gpd.GeoDataFrame(
+            df, 
+            geometry=gpd.points_from_xy(df.longitude, df.latitude), 
+            crs="EPSG:4326"  # Set coordinate reference system to standard lat/lon
+        )
 
+        # Create a plot with Maryland as the background
+        fig, ax = plt.subplots(figsize=(8, 10))
+        maryland.plot(ax=ax, color='lightgray')  # Draw Maryland state
+        gdf.plot(ax=ax, markersize=10, color='red', alpha=0.6)  # Plot bird sightings
+        
+        # Add title and axis labels
+        plt.title(f"Bird Sightings in Maryland: {species_name}", fontsize=14)
+        plt.xlabel("Longitude", fontsize=12)
+        plt.ylabel("Latitude", fontsize=12)
+
+        # Save plot to outputs directory
+        output_path = f"data/outputs/map_{species_name.lower().replace(' ', '_')}.png"
+        plt.savefig(output_path)
+        plt.close()
+        logger.info(f"Saved bird locations map for {species_name} to {output_path}")
+
+    except Exception as e:
+        logger.error(f"Failed to plot bird locations for {species_name}: {e}", exc_info=True)
 
 
 def plot_regression_results(y_true, y_pred, species_name):
     """
     Creates a scatter plot of predicted vs. actual abundance values.
     """
-    plt.figure(figsize=(8, 6))
-    sns.scatterplot(x=y_true, y=y_pred, alpha=0.6)
-    plt.plot([y_true.min(), y_true.max()], [y_true.min(), y_true.max()], 'r--')  # Reference line
-    plt.xlabel("Actual Abundance")
-    plt.ylabel("Predicted Abundance")
-    plt.title(f"Predicted vs Actual Abundance for {species_name}")
-    plt.tight_layout()
+    try:
+        plt.figure(figsize=(8, 6))
+        sns.scatterplot(x=y_true, y=y_pred, alpha=0.6)
+        plt.plot([y_true.min(), y_true.max()], [y_true.min(), y_true.max()], 'r--')  # Reference line
+        plt.xlabel("Actual Abundance")
+        plt.ylabel("Predicted Abundance")
+        plt.title(f"Predicted vs Actual Abundance for {species_name}")
+        plt.tight_layout()
 
-    os.makedirs("data/outputs", exist_ok=True)
-    plot_path = f"data/outputs/regression_plot_{species_name.lower().replace(' ', '_')}.png"
-    plt.savefig(plot_path)
-    plt.close()
-    print(f"Saved regression plot to {plot_path}")
+        os.makedirs("data/outputs", exist_ok=True)
+        plot_path = f"data/outputs/regression_plot_{species_name.lower().replace(' ', '_')}.png"
+        plt.savefig(plot_path)
+        plt.close()
+        logger.info(f"Saved regression plot for {species_name} to {plot_path}")
+
+    except Exception as e:
+        logger.error(f"Failed to plot regression results for {species_name}: {e}", exc_info=True)
