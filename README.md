@@ -1,4 +1,4 @@
-# Bird Conservation Resource Allocation – Final Project Part 2 (INST414)
+# Bird Conservation Resource Allocation – Final Project Part 3 (INST414)
 
 ## Project Overview
 
@@ -98,7 +98,9 @@ This command will execute the entire workflow, including:
 
 - Extracting, transforming, and loading the raw bird data
 
-- Training a logistic regression model to predict significant population presence in a region
+- Training a Random Forest regression/classification model to predict bird abundance or abundance category (high/low) in regions
+    - Handling limited variability in target variables by binarizing abundance (high/low)
+    - Model evaluation using metrics like R², MSE, accuracy, and confusion matrix heatmaps
 
 - Saving visualizations and evaluation metrics to the data/analyzed/ directory 
 
@@ -166,7 +168,7 @@ inst414-final-project-Jillian-Conway/
 
     - Spatial maps of bird sightings by species in data/outputs/
 
-    - Regression plots showing predicted vs. actual bird abundance
+    - Confusion matrix heatmaps and evaluation plots reflecting binary abundance classification
 
 - Logs and Reports (coming soon)
     - Console output showing progress and key results during pipeline runs.
@@ -175,9 +177,11 @@ inst414-final-project-Jillian-Conway/
 ## Additional Notes and Contact
 Notes:
 
-Some .csv and .txt files exceed GitHub’s 100MB file limit, so Git LFS is required.
+- Some .csv and .txt files exceed GitHub’s 100MB file limit, so Git LFS is required.
 
-Be sure to run git lfs pull after cloning to retrieve the large data files.
+- Due to eBird’s data access policy requiring a formal request and the large size of the full datasets, only a limited subset of the data was downloaded (primarily from 2023). This constraint may affect the breadth and variability of the analysis results.
+
+- Be sure to run git lfs pull after cloning to retrieve the large data files.
 
 Contact: 
 
