@@ -1,51 +1,68 @@
+
 import logging
-from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import Pipeline
 
 logger = logging.getLogger(__name__)
 
-def train_model(df):
+
+def train_classification_model(df, target_col='abundance_class'):
     """
-    Train a linear regression model to predict bird abundance_mean.
+    Train a Random Forest classification model to predict abundance_class.
+    Properly handles numeric and categorical features with preprocessing,
+    and avoids data leakage.
+    Assumes df is preprocessed and target_col exists.
     """
     try:
-        target_column = 'abundance_mean'
+        # Columns to exclude from features to avoid leakage
+        leak_cols = [target_col, 'abundance_mean']  # Add others if needed
 
-        # Select numeric columns only (excluding target)
-        feature_columns = df.select_dtypes(include=['number']).columns.tolist()
-        if target_column in feature_columns:
-            feature_columns.remove(target_column)
+        # Select feature columns excluding target and leakage columns
+        feature_cols = [col for col in df.columns if col not in leak_cols]
 
-        # Drop rows with missing values in target or features
-        df = df.dropna(subset=[target_column] + feature_columns)
+        # Drop rows with missing target or feature values
+        df = df.dropna(subset=[target_col] + feature_cols)
 
-        y = df[target_column]
-        X = df[feature_columns]
+        X = df[feature_cols]
+        y = df[target_col]
 
-        logger.info(f"Target variable sample values for training: {y.head().tolist()}")
+        logger.info(f"Classes: {y.unique().tolist()}")
 
-        # Split data without stratify because target is continuous
+        # Split data (stratify by target)
         X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=0.2, random_state=42)
+            X, y, test_size=0.2, random_state=42, stratify=y)
 
-        # Scale features
-        scaler = StandardScaler()
-        X_train_scaled = scaler.fit_transform(X_train)
-        X_test_scaled = scaler.transform(X_test)
+        # Separate numeric and categorical columns
+        numeric_features = X.select_dtypes(include=['number']).columns.tolist()
+        categorical_features = X.select_dtypes(include=['object', 'category']).columns.tolist()
 
-        # Train linear regression model
-        model = LinearRegression()
-        model.fit(X_train_scaled, y_train)
+        # Create preprocessing pipeline
+        preprocessor = ColumnTransformer(
+            transformers=[
+                ('num', StandardScaler(), numeric_features),
+                ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+            ])
 
-        logger.info("Linear regression model trained successfully.")
+        # Full pipeline: preprocessing + classifier
+        clf = Pipeline([
+            ('preprocessor', preprocessor),
+            ('classifier', RandomForestClassifier(random_state=42))
+        ])
 
-        # Predict on test data
-        y_pred = model.predict(X_test_scaled)
+        # Train model
+        clf.fit(X_train, y_train)
+        logger.info("Random Forest classification model trained successfully.")
 
-        return model, y_test, y_pred
-    
+        # Predict on test set
+        y_pred = clf.predict(X_test)
+
+        return clf, y_test, y_pred
+
     except Exception as e:
-        logger.error(f"Error during model training: {e}", exc_info=True)
+        logger.error(f"Error during classification model training: {e}", exc_info=True)
         raise

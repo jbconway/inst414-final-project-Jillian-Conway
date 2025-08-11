@@ -51,24 +51,41 @@ def plot_bird_locations(df, species_name):
         logger.error(f"Failed to plot bird locations for {species_name}: {e}", exc_info=True)
 
 
-def plot_regression_results(y_true, y_pred, species_name):
+
+
+from sklearn.metrics import confusion_matrix
+def plot_confusion_matrix(y_true, y_pred, species_name, class_names=None):
     """
-    Creates a scatter plot of predicted vs. actual abundance values.
+    Plots and saves a confusion matrix heatmap for binary classification results.
+    
+    Parameters:
+        y_true (array-like): True class labels
+        y_pred (array-like): Predicted class labels
+        species_name (str): Species name for plot title and filename
+        class_names (list of str, optional): Names of the classes for axis labels (default ['Low', 'High'])
     """
     try:
-        plt.figure(figsize=(8, 6))
-        sns.scatterplot(x=y_true, y=y_pred, alpha=0.6)
-        plt.plot([y_true.min(), y_true.max()], [y_true.min(), y_true.max()], 'r--')  # Reference line
-        plt.xlabel("Actual Abundance")
-        plt.ylabel("Predicted Abundance")
-        plt.title(f"Predicted vs Actual Abundance for {species_name}")
+        if class_names is None:
+            class_names = ['Low', 'High']  # default binary classes
+
+        cm = confusion_matrix(y_true, y_pred, labels=class_names)
+        
+        plt.figure(figsize=(6, 5))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                    xticklabels=class_names,
+                    yticklabels=class_names)
+        
+        plt.xlabel('Predicted Label')
+        plt.ylabel('True Label')
+        plt.title(f'Confusion Matrix for {species_name}')
         plt.tight_layout()
 
         os.makedirs("data/outputs", exist_ok=True)
-        plot_path = f"data/outputs/regression_plot_{species_name.lower().replace(' ', '_')}.png"
+        plot_path = f"data/outputs/confusion_matrix_{species_name.lower().replace(' ', '_')}.png"
         plt.savefig(plot_path)
         plt.close()
-        logger.info(f"Saved regression plot for {species_name} to {plot_path}")
+        
+        logger.info(f"Saved confusion matrix plot for {species_name} to {plot_path}")
 
     except Exception as e:
-        logger.error(f"Failed to plot regression results for {species_name}: {e}", exc_info=True)
+        logger.error(f"Failed to plot confusion matrix for {species_name}: {e}", exc_info=True)

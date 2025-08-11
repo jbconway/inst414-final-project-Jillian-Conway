@@ -83,6 +83,12 @@ def main():
         except Exception as e:
             logger.error(f"Error merging datasets for {species}: {e}", exc_info=True)
             continue
+        try:
+            merged_df = transform.categorize_abundance_binary(merged_df)
+            logger.info(f"Categorized abundance for {species}")
+        except Exception as e:
+            logger.error(f"Error categorizing abundance for {species}: {e}", exc_info=True)
+            continue
 
         try:
             logger.info(f"Running EDA for {species}")
@@ -100,14 +106,17 @@ def main():
 
         try:
             logger.info(f"Training model for {species}")
-            trained_model, y_test, y_pred = model.train_model(merged_df)
+            # trained_model, y_test, y_pred = model.train_model(merged_df)
+            trained_model, y_test, y_pred = model.train_classification_model(merged_df, target_col='abundance_class')
         except Exception as e:
             logger.error(f"Error training model for {species}: {e}", exc_info=True)
             continue
 
         try:
             logger.info(f"Evaluating model for {species}")
-            evaluate.evaluate_model(y_test, y_pred, species_name=species)
+            # evaluate.evaluate_model(y_test, y_pred, species_name=species)
+            evaluate.evaluate_classification_model(y_test, y_pred, species_name=species)
+
         except Exception as e:
             logger.error(f"Error evaluating model for {species}: {e}", exc_info=True)
 
@@ -118,10 +127,11 @@ def main():
             logger.error(f"Error plotting bird locations for {species}: {e}", exc_info=True)
 
         try:
-            logger.info(f"Plotting regression results for {species}")
-            vis.plot_regression_results(y_test, y_pred, species)
+            logger.info(f"Creating confusion matrix for {species}")
+            vis.plot_confusion_matrix(y_test, y_pred, species, class_names=['Low', 'Medium', 'High'])
+            # vis.plot_regression_results(y_test, y_pred, species)
         except Exception as e:
-            logger.error(f"Error plotting regression results for {species}: {e}", exc_info=True)
+            logger.error(f"Error creating confusion matrix for {species}: {e}", exc_info=True)
 
     logger.info("Pipeline finished.")
 

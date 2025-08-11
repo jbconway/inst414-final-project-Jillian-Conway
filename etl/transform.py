@@ -72,74 +72,6 @@ def clean_status_data(filepath):
     return df
 
 
-# old code, not doing merging correctly
-# def merge_datasets(status_df, ebd_df):
-#     """
-#     Merge cleaned EBD and Status & Trends datasets based on:
-#     - Matching state_code (EBD) and region_code (Status) - on us-md
-#     - If Status row is 'year_round', apply to all
-#     - Otherwise, match observation_date to the one that fits in [start_date, end_date] to attach appropriate row
-#         - this will need to change because not all dates line up
-#     - end should be a dataframe with the same columns as ebd_df, but with abundance_mean, season, and total_pop_percent added from status_df
-#     """
-#     # Normalize strings
-#     ebd_df["state_code"] = ebd_df["state_code"].str.lower()
-#     status_df["region_code"] = status_df["region_code"].str.lower().str.replace("usa-", "us-")
-#     status_df["season"] = status_df["season"].str.lower()
-#
-#     # Filter to MD only
-#     ebd_df = ebd_df[ebd_df["state_code"] == "us-md"]
-#     status_df = status_df[status_df["region_code"] == "us-md"]
-#
-#     # Convert dates
-#     ebd_df["observation_date"] = pd.to_datetime(ebd_df["observation_date"], errors="coerce")
-#     status_df.loc[:, "start_date"] = pd.to_datetime(status_df["start_date"], errors="coerce")
-#     status_df.loc[:, "end_date"] = pd.to_datetime(status_df["end_date"], errors="coerce")
-#
-#     # Separate year_round and seasonal data
-#     year_round = status_df[status_df["season"] == "year_round"]
-#     seasonal = status_df[status_df["season"] != "year_round"]
-#
-#     # Merge: First, handle year_round (if present)
-#     if not year_round.empty:
-#         # Grab the one year_round row (assuming there's only one)
-#         yr_row = year_round.iloc[0][["abundance_mean", "total_pop_percent", "season"]]
-#         # Add to all EBD rows
-#         for col in yr_row.index:
-#             ebd_df[col] = yr_row[col]
-#         print("handled year_round data")
-#         return ebd_df
-#
-#     # If not year_round, match to seasonal windows
-#     def match_season(row):
-#         obs_date = row["observation_date"]
-#         matched = seasonal[
-#             (seasonal["start_date"] <= obs_date) &
-#             (seasonal["end_date"] >= obs_date)
-#         ]
-#         if not matched.empty:
-#             best = matched.iloc[0]
-#             return pd.Series({
-#                 "abundance_mean": best["abundance_mean"],
-#                 "total_pop_percent": best["total_pop_percent"],
-#                 "season": best["season"]
-#             })
-#         else:
-#         # catch all - need to change logic 
-#             return pd.Series({
-#                 "abundance_mean": np.nan,
-#                 "total_pop_percent": np.nan,
-#                 "season": "n/a"
-#             })
-#
-#     # Apply seasonal matching row-by-row
-#     seasonal_info = ebd_df.apply(match_season, axis=1)
-#
-#     # Combine original EBD with matched seasonal info
-#     merged_df = pd.concat([ebd_df, seasonal_info], axis=1)
-#
-#     return merged_df
-
 def merge_datasets(status_df, ebd_df):
     """
     Merge cleaned EBD and Status & Trends datasets.
@@ -260,6 +192,14 @@ def merge_datasets(status_df, ebd_df):
         logger.info("Applied seasonal matching to EBD data")
 
     return ebd_df
+
+
+def categorize_abundance_binary(df):
+    # Choose a cutoff — e.g., median or domain-specific threshold
+    cutoff = df['abundance_mean'].median()
+    df['abundance_class'] = df['abundance_mean'].apply(lambda x: 'Low' if x <= cutoff else 'High')
+    df = df.dropna(subset=['abundance_class'])
+    return df
 
 
 def run_eda(df):
