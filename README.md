@@ -73,6 +73,7 @@ This ensures that large data files referenced in the repo are correctly download
 
 ```bash
 venv/
+__pycache__/
 ```
 
 .gitattributes configures Git LFS to track large data files, including:
