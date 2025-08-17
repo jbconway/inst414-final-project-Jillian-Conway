@@ -83,17 +83,20 @@ def plot_confusion_matrix(y_true, y_pred, species_name, class_names=None):
         y_true = pd.Series(y_true)
         y_pred = pd.Series(y_pred)
 
-        # Suppress the single-label sklearn warning
+        # Suppress only the single-label sklearn warning
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=UserWarning)
-            
-            # Check if single class is present
-            unique_labels = set(y_true) | set(y_pred)
-            if len(unique_labels) < 2:
-                logger.warning(f"Species {species_name} has only a single class present. Using a dummy confusion matrix.")
-                cm = pd.DataFrame([[0, 0], [0, 0]], index=labels, columns=labels)
-            else:
-                cm = confusion_matrix(y_true, y_pred, labels=labels)
+            cm = confusion_matrix(y_true, y_pred, labels=labels)
+
+        # If the confusion matrix is 1x1 (single class), pad it to 2x2
+        if cm.shape != (2, 2):
+            full_cm = pd.DataFrame(0, index=labels, columns=labels)
+            for i, label_true in enumerate(labels):
+                for j, label_pred in enumerate(labels):
+                    if label_true in y_true.values and label_pred in y_pred.values:
+                        mask = (y_true == label_true) & (y_pred == label_pred)
+                        full_cm.loc[label_true, label_pred] = mask.sum()
+            cm = full_cm.values
 
         # Plot heatmap
         plt.figure(figsize=(6, 5))
