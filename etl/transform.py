@@ -51,7 +51,13 @@ def clean_status_data(filepath):
     df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
 
     # Replace missing values with 'n/a' - this may need to change later
-    df.fillna("n/a", inplace=True)
+    # df.fillna("n/a", inplace=True)
+    for col in df.columns:
+        if df[col].dtype in ["float64", "int64"]:
+            # Fill numeric columns with a placeholder (or keep NaN)
+            df[col] = df[col].fillna(np.nan)
+        else:
+            df[col] = df[col].astype(object).fillna("n/a")
 
     # Keep only the specified columns
     columns_to_keep = [
@@ -215,9 +221,12 @@ def run_eda(df):
     # make a folder to save output to
     os.makedirs("data/analyzed", exist_ok=True)
     # Fill missing values in string (object) columns with "n/a"
+    # for col in df.columns:
+    #     if df[col].dtype == object:
+    #         df[col].fillna("n/a", inplace=True)
     for col in df.columns:
         if df[col].dtype == object:
-            df[col].fillna("n/a", inplace=True)
+            df[col] = df[col].astype(object).fillna("n/a")
 
     # If the column "season" exists, show the top 5 most common values
     if "season" in df.columns:
@@ -229,7 +238,7 @@ def run_eda(df):
         plt.figure(figsize=(8, 5))
         # Create a histogram with a smooth curve showing the distribution
         sns.histplot(df["abundance_mean"].dropna(), bins=30, kde=True)
-        plt.title("Distribution of Abundance Mean")
+        plt.title(f"Distribution of Abundance Mean – {df['common_name'].iloc[0] if 'common_name' in df.columns else 'Unknown Species'}")
         plt.xlabel("Abundance Mean")
         plt.ylabel("Frequency")
         plt.tight_layout()

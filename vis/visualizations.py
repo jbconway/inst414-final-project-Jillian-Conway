@@ -1,10 +1,22 @@
 import logging
 import os
+# from turtle import pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import geopandas as gpd
+from sklearn.metrics import confusion_matrix
+import warnings
+import pandas as pd
 
 logger = logging.getLogger(__name__)
+
+# Suppress sklearn single-label confusion matrix warning globally
+warnings.filterwarnings(
+    "ignore",
+    message=".*single label was found in 'y_true' and 'y_pred'.*",
+    category=UserWarning,
+    module="sklearn.metrics._classification"
+)
 
 def plot_bird_locations(df, species_name):
     """
@@ -53,7 +65,6 @@ def plot_bird_locations(df, species_name):
 
 
 
-from sklearn.metrics import confusion_matrix
 def plot_confusion_matrix(y_true, y_pred, species_name, class_names=None):
     """
     Plots and saves a confusion matrix heatmap for binary classification results.
@@ -65,16 +76,30 @@ def plot_confusion_matrix(y_true, y_pred, species_name, class_names=None):
         class_names (list of str, optional): Names of the classes for axis labels (default ['Low', 'High'])
     """
     try:
+        labels = ["Low", "High"]
         if class_names is None:
-            class_names = ['Low', 'High']  # default binary classes
+            class_names = labels
 
-        cm = confusion_matrix(y_true, y_pred, labels=class_names)
-        
+        y_true = pd.Series(y_true)
+        y_pred = pd.Series(y_pred)
+
+        # Suppress the single-label sklearn warning
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=UserWarning)
+            
+            # Check if single class is present
+            unique_labels = set(y_true) | set(y_pred)
+            if len(unique_labels) < 2:
+                logger.warning(f"Species {species_name} has only a single class present. Using a dummy confusion matrix.")
+                cm = pd.DataFrame([[0, 0], [0, 0]], index=labels, columns=labels)
+            else:
+                cm = confusion_matrix(y_true, y_pred, labels=labels)
+
+        # Plot heatmap
         plt.figure(figsize=(6, 5))
         sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
                     xticklabels=class_names,
                     yticklabels=class_names)
-        
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title(f'Confusion Matrix for {species_name}')
@@ -84,7 +109,6 @@ def plot_confusion_matrix(y_true, y_pred, species_name, class_names=None):
         plot_path = f"data/outputs/confusion_matrix_{species_name.lower().replace(' ', '_')}.png"
         plt.savefig(plot_path)
         plt.close()
-        
         logger.info(f"Saved confusion matrix plot for {species_name} to {plot_path}")
 
     except Exception as e:
