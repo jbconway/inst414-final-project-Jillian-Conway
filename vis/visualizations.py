@@ -10,7 +10,7 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-# Suppress sklearn single-label confusion matrix warning globally
+# # Suppress sklearn single-label confusion matrix warning globally
 warnings.filterwarnings(
     "ignore",
     message=".*single label was found in 'y_true' and 'y_pred'.*",

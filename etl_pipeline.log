@@ -1,33 +1,33 @@
-2025-08-18 14:49:42,706 - INFO - Pipeline started.
-2025-08-18 14:49:42,706 - INFO - Processing species: cardinal
-2025-08-18 14:49:42,706 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_norcar_201001_202401_smp_relJun-2025.txt with sep='	'
-2025-08-18 14:50:38,475 - INFO - Saved extracted data to data/extracted/cardinal_ebd_extracted.csv
-2025-08-18 14:50:38,635 - INFO - Extracted EBD data for cardinal and saved to data/extracted/cardinal_ebd_extracted.csv
-2025-08-18 14:50:38,638 - INFO - Reading: cornel_bird_data/trends_and_status_ds/norcar_regional_2023.csv with sep=','
-2025-08-18 14:50:38,667 - INFO - Saved extracted data to data/extracted/cardinal_status_extracted.csv
-2025-08-18 14:50:38,667 - INFO - Extracted Status data for cardinal and saved to data/extracted/cardinal_status_extracted.csv
-2025-08-18 14:51:21,275 - INFO - Cleaned EBD data for cardinal
-2025-08-18 14:51:21,332 - INFO - Cleaned Status data for cardinal
-2025-08-18 14:51:21,332 - INFO - Merging datasets for cardinal
-2025-08-18 14:51:22,729 - INFO - Applied single year_round row to all observations (no species key found).
-2025-08-18 14:51:23,698 - INFO - Categorized abundance for cardinal
-2025-08-18 14:51:23,698 - INFO - Running EDA for cardinal
-2025-08-18 14:51:23,698 - INFO - Running EDA...
-2025-08-18 14:51:23,698 - INFO - Data shape: (896890, 11)
-2025-08-18 14:51:23,698 - INFO - Columns: ['scientific_name', 'common_name', 'observation_count', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season', 'abundance_class']
-2025-08-18 14:51:24,890 - INFO - Top 5 seasons:
+2025-08-18 16:26:42,052 - INFO - Pipeline started.
+2025-08-18 16:26:42,052 - INFO - Processing species: cardinal
+2025-08-18 16:26:42,052 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_norcar_201001_202401_smp_relJun-2025.txt with sep='	'
+2025-08-18 16:27:07,890 - INFO - Saved extracted data to data/extracted/cardinal_ebd_extracted.csv
+2025-08-18 16:27:08,019 - INFO - Extracted EBD data for cardinal and saved to data/extracted/cardinal_ebd_extracted.csv
+2025-08-18 16:27:08,019 - INFO - Reading: cornel_bird_data/trends_and_status_ds/norcar_regional_2023.csv with sep=','
+2025-08-18 16:27:08,026 - INFO - Saved extracted data to data/extracted/cardinal_status_extracted.csv
+2025-08-18 16:27:08,026 - INFO - Extracted Status data for cardinal and saved to data/extracted/cardinal_status_extracted.csv
+2025-08-18 16:27:30,743 - INFO - Cleaned EBD data for cardinal
+2025-08-18 16:27:30,773 - INFO - Cleaned Status data for cardinal
+2025-08-18 16:27:30,773 - INFO - Merging datasets for cardinal
+2025-08-18 16:27:31,318 - INFO - Applied single year_round row to all observations (no species key found).
+2025-08-18 16:27:31,764 - INFO - Categorized abundance for cardinal
+2025-08-18 16:27:31,764 - INFO - Running EDA for cardinal
+2025-08-18 16:27:31,764 - INFO - Running EDA...
+2025-08-18 16:27:31,764 - INFO - Data shape: (896890, 11)
+2025-08-18 16:27:31,764 - INFO - Columns: ['scientific_name', 'common_name', 'observation_count', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season', 'abundance_class']
+2025-08-18 16:27:32,290 - INFO - Top 5 seasons:
 season
 year_round    896890
 Name: count, dtype: int64
-2025-08-18 14:51:28,802 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_northern_cardinal.png
-2025-08-18 14:51:28,803 - INFO - Saving merged data for cardinal to data/processed/cardinal_merged_data.csv
-2025-08-18 14:51:43,719 - INFO - Saved processed data to: data/processed/cardinal_merged_data.csv
-2025-08-18 14:51:43,719 - INFO - Training model for cardinal
-2025-08-18 14:51:45,125 - INFO - Classes: ['Low']
-2025-08-18 14:52:08,519 - INFO - Random Forest classification model trained successfully.
-2025-08-18 14:52:10,334 - INFO - Evaluating model for cardinal
-2025-08-18 14:52:19,129 - INFO - Classification Accuracy for cardinal: 1.000
-2025-08-18 14:52:21,702 - INFO - Classification Report for cardinal:
+2025-08-18 16:27:33,190 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_northern_cardinal.png
+2025-08-18 16:27:33,190 - INFO - Saving merged data for cardinal to data/processed/cardinal_merged_data.csv
+2025-08-18 16:27:39,268 - INFO - Saved processed data to: data/processed/cardinal_merged_data.csv
+2025-08-18 16:27:39,268 - INFO - Training model for cardinal
+2025-08-18 16:27:39,818 - INFO - Classes: ['Low']
+2025-08-18 16:27:49,949 - INFO - Random Forest classification model trained successfully.
+2025-08-18 16:27:50,532 - INFO - Evaluating model for cardinal
+2025-08-18 16:27:52,647 - INFO - Classification Accuracy for cardinal: 1.000
+2025-08-18 16:27:54,349 - INFO - Classification Report for cardinal:
               precision    recall  f1-score   support
 
          Low       1.00      1.00      1.00    179378
@@ -36,46 +36,46 @@ Name: count, dtype: int64
    macro avg       1.00      1.00      1.00    179378
 weighted avg       1.00      1.00      1.00    179378
 
-2025-08-18 14:52:21,702 - INFO - Confusion Matrix for cardinal:
+2025-08-18 16:27:54,349 - INFO - Confusion Matrix for cardinal:
 [[179378]]
-2025-08-18 14:52:21,714 - INFO - Saved classification evaluation results for cardinal.
-2025-08-18 14:52:21,714 - INFO - Plotting bird locations for cardinal
-2025-08-18 14:52:21,879 - INFO - Data cleaned for plotting bird locations for cardinal.
-2025-08-18 14:53:55,339 - INFO - Saved bird locations map for cardinal to data/outputs/map_cardinal.png
-2025-08-18 14:53:55,386 - INFO - Creating confusion matrix for cardinal
-2025-08-18 14:53:57,544 - INFO - Saved confusion matrix plot for cardinal to data/outputs/confusion_matrix_cardinal.png
-2025-08-18 14:53:57,544 - INFO - Processing species: osprey
-2025-08-18 14:53:57,544 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_osprey_201001_202401_smp_relJun-2025.txt with sep='	'
-2025-08-18 14:54:16,053 - INFO - Saved extracted data to data/extracted/osprey_ebd_extracted.csv
-2025-08-18 14:54:16,119 - INFO - Extracted EBD data for osprey and saved to data/extracted/osprey_ebd_extracted.csv
-2025-08-18 14:54:16,119 - INFO - Reading: cornel_bird_data/trends_and_status_ds/osprey_regional_2023.csv with sep=','
-2025-08-18 14:54:16,690 - INFO - Saved extracted data to data/extracted/osprey_status_extracted.csv
-2025-08-18 14:54:16,698 - INFO - Extracted Status data for osprey and saved to data/extracted/osprey_status_extracted.csv
-2025-08-18 14:54:29,383 - INFO - Cleaned EBD data for osprey
-2025-08-18 14:54:29,561 - INFO - Cleaned Status data for osprey
-2025-08-18 14:54:29,561 - INFO - Merging datasets for osprey
-2025-08-18 14:58:46,871 - INFO - Applied seasonal matching to EBD data
-2025-08-18 14:58:46,978 - INFO - Categorized abundance for osprey
-2025-08-18 14:58:46,978 - INFO - Running EDA for osprey
-2025-08-18 14:58:46,978 - INFO - Running EDA...
-2025-08-18 14:58:46,978 - INFO - Data shape: (190285, 11)
-2025-08-18 14:58:46,978 - INFO - Columns: ['scientific_name', 'common_name', 'observation_count', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season', 'abundance_class']
-2025-08-18 14:58:47,061 - INFO - Top 5 seasons:
+2025-08-18 16:27:54,349 - INFO - Saved classification evaluation results for cardinal.
+2025-08-18 16:27:54,349 - INFO - Plotting bird locations for cardinal
+2025-08-18 16:27:54,520 - INFO - Data cleaned for plotting bird locations for cardinal.
+2025-08-18 16:28:17,952 - INFO - Saved bird locations map for cardinal to data/outputs/map_cardinal.png
+2025-08-18 16:28:17,971 - INFO - Creating confusion matrix for cardinal
+2025-08-18 16:28:18,671 - INFO - Saved confusion matrix plot for cardinal to data/outputs/confusion_matrix_cardinal.png
+2025-08-18 16:28:18,671 - INFO - Processing species: osprey
+2025-08-18 16:28:18,671 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_osprey_201001_202401_smp_relJun-2025.txt with sep='	'
+2025-08-18 16:28:24,819 - INFO - Saved extracted data to data/extracted/osprey_ebd_extracted.csv
+2025-08-18 16:28:24,855 - INFO - Extracted EBD data for osprey and saved to data/extracted/osprey_ebd_extracted.csv
+2025-08-18 16:28:24,855 - INFO - Reading: cornel_bird_data/trends_and_status_ds/osprey_regional_2023.csv with sep=','
+2025-08-18 16:28:25,024 - INFO - Saved extracted data to data/extracted/osprey_status_extracted.csv
+2025-08-18 16:28:25,024 - INFO - Extracted Status data for osprey and saved to data/extracted/osprey_status_extracted.csv
+2025-08-18 16:28:29,435 - INFO - Cleaned EBD data for osprey
+2025-08-18 16:28:29,539 - INFO - Cleaned Status data for osprey
+2025-08-18 16:28:29,539 - INFO - Merging datasets for osprey
+2025-08-18 16:29:39,121 - INFO - Applied seasonal matching to EBD data
+2025-08-18 16:29:39,291 - INFO - Categorized abundance for osprey
+2025-08-18 16:29:39,291 - INFO - Running EDA for osprey
+2025-08-18 16:29:39,291 - INFO - Running EDA...
+2025-08-18 16:29:39,291 - INFO - Data shape: (190285, 11)
+2025-08-18 16:29:39,292 - INFO - Columns: ['scientific_name', 'common_name', 'observation_count', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season', 'abundance_class']
+2025-08-18 16:29:39,447 - INFO - Top 5 seasons:
 season
 prebreeding_migration     85715
 postbreeding_migration    47573
 breeding                  45770
 n/a                       11227
 Name: count, dtype: int64
-2025-08-18 14:58:50,230 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_osprey.png
-2025-08-18 14:58:50,230 - INFO - Saving merged data for osprey to data/processed/osprey_merged_data.csv
-2025-08-18 14:58:51,854 - INFO - Saved processed data to: data/processed/osprey_merged_data.csv
-2025-08-18 14:58:51,854 - INFO - Training model for osprey
-2025-08-18 14:58:51,963 - INFO - Classes: ['Low', 'High']
-2025-08-18 14:58:56,915 - INFO - Random Forest classification model trained successfully.
-2025-08-18 14:58:57,199 - INFO - Evaluating model for osprey
-2025-08-18 14:58:57,923 - INFO - Classification Accuracy for osprey: 1.000
-2025-08-18 14:58:58,477 - INFO - Classification Report for osprey:
+2025-08-18 16:29:46,813 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_osprey.png
+2025-08-18 16:29:46,814 - INFO - Saving merged data for osprey to data/processed/osprey_merged_data.csv
+2025-08-18 16:29:49,227 - INFO - Saved processed data to: data/processed/osprey_merged_data.csv
+2025-08-18 16:29:49,227 - INFO - Training model for osprey
+2025-08-18 16:29:49,368 - INFO - Classes: ['Low', 'High']
+2025-08-18 16:29:57,328 - INFO - Random Forest classification model trained successfully.
+2025-08-18 16:29:57,626 - INFO - Evaluating model for osprey
+2025-08-18 16:29:58,280 - INFO - Classification Accuracy for osprey: 1.000
+2025-08-18 16:29:58,705 - INFO - Classification Report for osprey:
               precision    recall  f1-score   support
 
         High       1.00      1.00      1.00      9154
@@ -85,32 +85,32 @@ Name: count, dtype: int64
    macro avg       1.00      1.00      1.00     35812
 weighted avg       1.00      1.00      1.00     35812
 
-2025-08-18 14:58:58,477 - INFO - Confusion Matrix for osprey:
+2025-08-18 16:29:58,705 - INFO - Confusion Matrix for osprey:
 [[ 9154     0]
  [    0 26658]]
-2025-08-18 14:58:58,481 - INFO - Saved classification evaluation results for osprey.
-2025-08-18 14:58:58,481 - INFO - Plotting bird locations for osprey
-2025-08-18 14:58:58,517 - INFO - Data cleaned for plotting bird locations for osprey.
-2025-08-18 14:59:11,481 - INFO - Saved bird locations map for osprey to data/outputs/map_osprey.png
-2025-08-18 14:59:11,492 - INFO - Creating confusion matrix for osprey
-2025-08-18 14:59:12,299 - INFO - Saved confusion matrix plot for osprey to data/outputs/confusion_matrix_osprey.png
-2025-08-18 14:59:12,301 - INFO - Processing species: american_woodcock
-2025-08-18 14:59:12,301 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_amewoo_201001_202401_smp_relJun-2025.txt with sep='	'
-2025-08-18 14:59:13,050 - INFO - Saved extracted data to data/extracted/american_woodcock_ebd_extracted.csv
-2025-08-18 14:59:13,054 - INFO - Extracted EBD data for american_woodcock and saved to data/extracted/american_woodcock_ebd_extracted.csv
-2025-08-18 14:59:13,055 - INFO - Reading: cornel_bird_data/trends_and_status_ds/amewoo_regional_2023.csv with sep=','
-2025-08-18 14:59:13,101 - INFO - Saved extracted data to data/extracted/american_woodcock_status_extracted.csv
-2025-08-18 14:59:13,102 - INFO - Extracted Status data for american_woodcock and saved to data/extracted/american_woodcock_status_extracted.csv
-2025-08-18 14:59:13,590 - INFO - Cleaned EBD data for american_woodcock
-2025-08-18 14:59:13,647 - INFO - Cleaned Status data for american_woodcock
-2025-08-18 14:59:13,647 - INFO - Merging datasets for american_woodcock
-2025-08-18 14:59:25,324 - INFO - Applied seasonal matching to EBD data
-2025-08-18 14:59:25,365 - INFO - Categorized abundance for american_woodcock
-2025-08-18 14:59:25,365 - INFO - Running EDA for american_woodcock
-2025-08-18 14:59:25,365 - INFO - Running EDA...
-2025-08-18 14:59:25,365 - INFO - Data shape: (7317, 10)
-2025-08-18 14:59:25,365 - INFO - Columns: ['scientific_name', 'common_name', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season', 'abundance_class']
-2025-08-18 14:59:25,389 - INFO - Top 5 seasons:
+2025-08-18 16:29:58,710 - INFO - Saved classification evaluation results for osprey.
+2025-08-18 16:29:58,710 - INFO - Plotting bird locations for osprey
+2025-08-18 16:29:58,732 - INFO - Data cleaned for plotting bird locations for osprey.
+2025-08-18 16:30:09,486 - INFO - Saved bird locations map for osprey to data/outputs/map_osprey.png
+2025-08-18 16:30:09,491 - INFO - Creating confusion matrix for osprey
+2025-08-18 16:30:10,020 - INFO - Saved confusion matrix plot for osprey to data/outputs/confusion_matrix_osprey.png
+2025-08-18 16:30:10,020 - INFO - Processing species: american_woodcock
+2025-08-18 16:30:10,020 - INFO - Reading: cornel_bird_data/ebd_ds/ebd_US-MD_amewoo_201001_202401_smp_relJun-2025.txt with sep='	'
+2025-08-18 16:30:10,386 - INFO - Saved extracted data to data/extracted/american_woodcock_ebd_extracted.csv
+2025-08-18 16:30:10,388 - INFO - Extracted EBD data for american_woodcock and saved to data/extracted/american_woodcock_ebd_extracted.csv
+2025-08-18 16:30:10,388 - INFO - Reading: cornel_bird_data/trends_and_status_ds/amewoo_regional_2023.csv with sep=','
+2025-08-18 16:30:10,398 - INFO - Saved extracted data to data/extracted/american_woodcock_status_extracted.csv
+2025-08-18 16:30:10,399 - INFO - Extracted Status data for american_woodcock and saved to data/extracted/american_woodcock_status_extracted.csv
+2025-08-18 16:30:10,688 - INFO - Cleaned EBD data for american_woodcock
+2025-08-18 16:30:10,729 - INFO - Cleaned Status data for american_woodcock
+2025-08-18 16:30:10,729 - INFO - Merging datasets for american_woodcock
+2025-08-18 16:30:16,762 - INFO - Applied seasonal matching to EBD data
+2025-08-18 16:30:16,780 - INFO - Categorized abundance for american_woodcock
+2025-08-18 16:30:16,780 - INFO - Running EDA for american_woodcock
+2025-08-18 16:30:16,780 - INFO - Running EDA...
+2025-08-18 16:30:16,780 - INFO - Data shape: (7317, 10)
+2025-08-18 16:30:16,780 - INFO - Columns: ['scientific_name', 'common_name', 'observation_date', 'state_code', 'latitude', 'longitude', 'abundance_mean', 'total_pop_percent', 'season', 'abundance_class']
+2025-08-18 16:30:16,789 - INFO - Top 5 seasons:
 season
 prebreeding_migration     4811
 postbreeding_migration    1034
@@ -118,15 +118,15 @@ breeding                   770
 nonbreeding                512
 n/a                        190
 Name: count, dtype: int64
-2025-08-18 14:59:29,240 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_american_woodcock.png
-2025-08-18 14:59:29,240 - INFO - Saving merged data for american_woodcock to data/processed/american_woodcock_merged_data.csv
-2025-08-18 14:59:29,714 - INFO - Saved processed data to: data/processed/american_woodcock_merged_data.csv
-2025-08-18 14:59:29,714 - INFO - Training model for american_woodcock
-2025-08-18 14:59:29,728 - INFO - Classes: ['Low']
-2025-08-18 14:59:30,347 - INFO - Random Forest classification model trained successfully.
-2025-08-18 14:59:30,385 - INFO - Evaluating model for american_woodcock
-2025-08-18 14:59:30,459 - INFO - Classification Accuracy for american_woodcock: 1.000
-2025-08-18 14:59:30,512 - INFO - Classification Report for american_woodcock:
+2025-08-18 16:30:17,596 - INFO - Saved histogram plot to data/analyzed/abundance_mean_hist_american_woodcock.png
+2025-08-18 16:30:17,597 - INFO - Saving merged data for american_woodcock to data/processed/american_woodcock_merged_data.csv
+2025-08-18 16:30:17,716 - INFO - Saved processed data to: data/processed/american_woodcock_merged_data.csv
+2025-08-18 16:30:17,716 - INFO - Training model for american_woodcock
+2025-08-18 16:30:17,724 - INFO - Classes: ['Low']
+2025-08-18 16:30:18,001 - INFO - Random Forest classification model trained successfully.
+2025-08-18 16:30:18,020 - INFO - Evaluating model for american_woodcock
+2025-08-18 16:30:18,050 - INFO - Classification Accuracy for american_woodcock: 1.000
+2025-08-18 16:30:18,075 - INFO - Classification Report for american_woodcock:
               precision    recall  f1-score   support
 
          Low       1.00      1.00      1.00      1426
@@ -135,12 +135,12 @@ Name: count, dtype: int64
    macro avg       1.00      1.00      1.00      1426
 weighted avg       1.00      1.00      1.00      1426
 
-2025-08-18 14:59:30,513 - INFO - Confusion Matrix for american_woodcock:
+2025-08-18 16:30:18,075 - INFO - Confusion Matrix for american_woodcock:
 [[1426]]
-2025-08-18 14:59:30,525 - INFO - Saved classification evaluation results for american_woodcock.
-2025-08-18 14:59:30,525 - INFO - Plotting bird locations for american_woodcock
-2025-08-18 14:59:30,531 - INFO - Data cleaned for plotting bird locations for american_woodcock.
-2025-08-18 14:59:32,257 - INFO - Saved bird locations map for american_woodcock to data/outputs/map_american_woodcock.png
-2025-08-18 14:59:32,258 - INFO - Creating confusion matrix for american_woodcock
-2025-08-18 14:59:33,217 - INFO - Saved confusion matrix plot for american_woodcock to data/outputs/confusion_matrix_american_woodcock.png
-2025-08-18 14:59:33,217 - INFO - Pipeline finished.
+2025-08-18 16:30:18,080 - INFO - Saved classification evaluation results for american_woodcock.
+2025-08-18 16:30:18,080 - INFO - Plotting bird locations for american_woodcock
+2025-08-18 16:30:18,083 - INFO - Data cleaned for plotting bird locations for american_woodcock.
+2025-08-18 16:30:18,893 - INFO - Saved bird locations map for american_woodcock to data/outputs/map_american_woodcock.png
+2025-08-18 16:30:18,894 - INFO - Creating confusion matrix for american_woodcock
+2025-08-18 16:30:19,614 - INFO - Saved confusion matrix plot for american_woodcock to data/outputs/confusion_matrix_american_woodcock.png
+2025-08-18 16:30:19,614 - INFO - Pipeline finished.
