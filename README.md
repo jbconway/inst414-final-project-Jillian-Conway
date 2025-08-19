@@ -101,7 +101,7 @@ This command will execute the entire workflow, including:
 
 - Training a Random Forest regression/classification model to predict bird abundance or abundance category (high/low) in regions
     - Handling limited variability in target variables by binarizing abundance (high/low)
-    - Model evaluation using metrics like R², MSE, accuracy, and confusion matrix heatmaps
+    - Model evaluation using metrics like accuracy and confusion matrix heatmaps
 
 - Saving visualizations and evaluation metrics to the data/analyzed/ directory 
 
@@ -163,7 +163,7 @@ inst414-final-project-Jillian-Conway/
     - Cleaned, merged, and transformed datasets stored in data/processed/ ready for analysis.
 
 - Model Artifacts and Evaluation
-    - Trained regression models and evaluation metrics (MSE, MAE, R²) saved in data/analyzed/, including CSV summaries of model performance.
+    - Trained classification models and evaluation metrics (accuracy and confusion matrices) saved in data/analyzed/, including CSV summaries of model performance.
 
 - Visualizations
 
