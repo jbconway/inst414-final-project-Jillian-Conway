@@ -1,12 +1,12 @@
-# Bird Conservation Resource Allocation – Final Project Part 3 (INST414)
+# Bird Conservation Resource Allocation – Final Project (INST414)
 
 ## Project Overview
 
-This project uses bird population data from 2010 to 2023 in Maryland to support better conservation planning through predictive analytics. By modeling abundance trends for three bird species—osprey, American woodcock, and northern cardinal—I aimed to forecast where each species is most likely to be found in high numbers. These predictions help conservation organizations prioritize areas for habitat protection and resource allocation. The analysis combines observational data with modeled estimates to identify meaningful patterns in abundance and reveal where efforts may have the greatest impact now and in the future.
+This project uses bird population data from 2023 in Maryland to support better conservation planning through predictive analytics. By modeling abundance trends for three bird species—osprey, American woodcock, and northern cardinal—I aimed to forecast where each species is most likely to be found in high numbers. These predictions help conservation organizations prioritize areas for habitat protection and resource allocation. The analysis combines observational data with modeled estimates to identify meaningful patterns in abundance and reveal where efforts may have the greatest impact now and in the future.
 
 ### Business Problem
 
-Current conservation resource allocation can be inefficient due to a lack of actionable population and distribution data. This project uses eBird datasets to develop a **predictive model** that estimates whether a specific region contains a significant portion of a bird species’ population, based on environmental and temporal variables. These predictions help target areas that may warrant conservation attention.
+Current conservation resource allocation can be inefficient due to a lack of actionable population and distribution data. This project uses eBird datasets to develop a **predictive model** that estimates whether a specific region contains a significant portion of a bird species’ population. These predictions help target areas that may warrant conservation attention.
 
 ### Data Sets Used
 
@@ -21,7 +21,7 @@ Current conservation resource allocation can be inefficient due to a lack of act
    - Downloaded for the three selected bird species across Maryland
 
 
-These datasets are placed in a folder named after the source (`cornell_bird_data`) and are included in the project package. Here is the link to the website: https://science.ebird.org/en/use-ebird-data/download-ebird-data-products. Note that these were a one-time download after submitting access requests and are tracked via Git Large File Storage (Git LFS). Data were subset to Maryland from 2010–2023 and include Northern Cardinal, American Woodcock, and Osprey.
+These datasets are placed in a folder named after the source (`cornell_bird_data`) and are included in the project package. Here is the link to the website: https://science.ebird.org/en/use-ebird-data/download-ebird-data-products. Note that these were a one-time download after submitting access requests and are tracked via Git Large File Storage (Git LFS). Data were subset to Maryland from 2023 and include Northern Cardinal, American Woodcock, and Osprey.
 
 ---
 
@@ -145,7 +145,7 @@ inst414-final-project-Jillian-Conway/
 
 ## Techniques Employed
 
-- Predictive analytics using logistic regression
+- Predictive analytics using Random Forest Classification
 
 - Feature engineering based on seasonal and abundance trends
 
@@ -188,6 +188,6 @@ Contact:
 
 Jillian Conway
 
-INST414 – Final Project Part 2
+INST414 – Final Project
 
 University of Maryland
